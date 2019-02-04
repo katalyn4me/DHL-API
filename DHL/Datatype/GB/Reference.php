@@ -46,7 +46,7 @@ class Reference extends Base
             'required' => false,
             'subobject' => false,
             'comment' => 'Shipper reference ID',
-            'maxLength' => '35',
+            'maxLength' => '41',
         ), 
         'ReferenceType' => array(
             'type' => 'ReferenceType',

@@ -36,6 +36,8 @@ class Piece extends Base
      */
     protected $_isSubobject = true;
 
+    protected $_serviceXSD = 'datatypes_global.xsd';
+
     /**
      * Parameters of the datatype
      * @var array
@@ -99,6 +101,11 @@ class Piece extends Base
             'subobject' => false,
             'comment' => 'Piece contents description',
             'maxLength' => '35',
-        ), 
+        ),
+        'PieceReference' => array(
+            'type' => 'Reference',
+            'required' => false,
+            'subobject' => true,
+        ),
     );
 }

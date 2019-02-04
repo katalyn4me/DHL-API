@@ -66,6 +66,17 @@ abstract class Base extends BaseDataType
         ),
     );
 
+    protected $_metaData = array(
+        'SoftwareName' => array(
+            'type' => 'string',
+            'required' => true,
+        ),
+        'SoftwareVersion' => array(
+            'type' => 'string',
+            'required' => true,
+        ),
+    );
+
     /**
      * Parameters to be used in the body 
      * @var array
@@ -94,7 +105,7 @@ abstract class Base extends BaseDataType
      * @var string
      * The schema version
      */
-    protected $_schemaVersion = '1.0';
+    protected $_schemaVersion = '6.21';
 
     /**
      * @var boolean
@@ -119,7 +130,7 @@ abstract class Base extends BaseDataType
      */ 
     public function __construct()
     {
-        $this->_params = array_merge($this->_headerParams, $this->_bodyParams);
+        $this->_params = array_merge($this->_headerParams, $this->_bodyParams, $this->_metaData);
         $this->initializeValues();
     }
 
@@ -156,12 +167,19 @@ abstract class Base extends BaseDataType
 
         $xmlWriter->startElement('Request');
         $xmlWriter->startElement('ServiceHeader');
+
         foreach ($this->_headerParams as $name => $infos) 
         {
             $xmlWriter->writeElement($name, $this->$name);
         }
-        $xmlWriter->endElement(); // End of Request
         $xmlWriter->endElement(); // End of ServiceHeader
+        $xmlWriter->startElement('MetaData');
+        foreach ($this->_metaData as $name => $infos)
+        {
+            $xmlWriter->writeElement($name, $this->$name);
+        }
+        $xmlWriter->endElement();
+        $xmlWriter->endElement(); // End of Request
 
         foreach ($this->_bodyParams as $name => $infos) 
         {

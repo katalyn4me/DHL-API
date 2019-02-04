@@ -93,6 +93,21 @@ class SpecialService extends Base
             'comment' => 'Boolean flag',
             'length' => '1',
             'enumeration' => 'Y,N',
-        ), 
+        ),
+        'CODAmount' => array(
+            'type' => 'Money',
+            'required' => false,
+            'subobject' => false,
+            'comment' => 'Monetary amount (with 2 decimal precision)',
+            'minInclusive' => '0.00',
+            'maxInclusive' => '9999999999.99',
+        ),
+        'CODCurrencyCode' => array(
+            'type' => 'CurrencyCode',
+            'required' => false,
+            'subobject' => false,
+            'comment' => 'ISO currency code',
+            'length' => '3',
+        ),
     );
 }

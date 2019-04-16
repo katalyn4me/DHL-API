@@ -103,7 +103,7 @@ class Piece extends Base
             'maxLength' => '35',
         ),
         'PieceReference' => array(
-            'type' => 'Reference',
+            'type' => 'PieceReference',
             'required' => false,
             'subobject' => true,
         ),

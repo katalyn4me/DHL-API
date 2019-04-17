@@ -46,7 +46,7 @@ class ShipmentResponse extends Base
      * @var string
      * Service XSD
      */
-    protected $_serviceXSD = 'ship-val-global-res.xsd';
+    protected $_serviceXSD = 'ship-val-global-res-6.2.xsd';
     protected $_schemaVersion = '6.2';
     /**
      * Parameters to be send in the body

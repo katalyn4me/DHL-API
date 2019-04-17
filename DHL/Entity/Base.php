@@ -105,7 +105,7 @@ abstract class Base extends BaseDataType
      * @var string
      * The schema version
      */
-    protected $_schemaVersion = '6.21';
+    protected $_schemaVersion = '6.2';
 
     /**
      * @var boolean

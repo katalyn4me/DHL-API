@@ -52,7 +52,7 @@ class ShipmentRequest extends Base
      * @var string
      * The schema version
      */
-    protected $_schemaVersion = '6.2';
+    protected $_schemaVersion = '6.21';
 
     /**
      * Display the schema version

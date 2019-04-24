@@ -66,14 +66,16 @@ abstract class Base extends BaseDataType
         ),
     );
 
+    protected $_useMetaData = true;
+
     protected $_metaData = array(
         'SoftwareName' => array(
             'type' => 'string',
-            'required' => true,
+            'required' => false,
         ),
         'SoftwareVersion' => array(
             'type' => 'string',
-            'required' => true,
+            'required' => false,
         ),
     );
 
@@ -105,7 +107,7 @@ abstract class Base extends BaseDataType
      * @var string
      * The schema version
      */
-    protected $_schemaVersion = '6.2';
+    protected $_schemaVersion = '1.0';
 
     /**
      * @var boolean
@@ -173,12 +175,15 @@ abstract class Base extends BaseDataType
             $xmlWriter->writeElement($name, $this->$name);
         }
         $xmlWriter->endElement(); // End of ServiceHeader
-        $xmlWriter->startElement('MetaData');
-        foreach ($this->_metaData as $name => $infos)
+        if ($this->_useMetaData)
         {
-            $xmlWriter->writeElement($name, $this->$name);
+            $xmlWriter->startElement('MetaData');
+            foreach ($this->_metaData as $name => $infos)
+            {
+                $xmlWriter->writeElement($name, $this->$name);
+            }
+            $xmlWriter->endElement();
         }
-        $xmlWriter->endElement();
         $xmlWriter->endElement(); // End of Request
 
         foreach ($this->_bodyParams as $name => $infos) 
